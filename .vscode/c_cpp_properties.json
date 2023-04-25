@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/max/wb_spot_ws/install/webots_ros2_control/include/**",
+        "/home/max/wb_spot_ws/install/webots_ros2_driver/include/**",
+        "/home/max/wb_spot_ws/install/webots_ros2_msgs/include/**",
+        "/home/max/wb_spot_ws/install/spot_msgs/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/max/golog_ws/src/gpp_action_examples/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
