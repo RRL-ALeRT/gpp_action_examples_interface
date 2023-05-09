@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(gpp_action_examples_interface)
+project(gpp_action_examples)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -14,11 +14,27 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
+  "action/PlayAudio.action"
   "action/Print.action"
   "action/TrajectoryToFrame.action"
   "srv/Print.srv"
 )
 
+set(PYTHON_NODES
+  audio_action_server.py
+  print_srv_server.py
+  TrajectoryToFrameServer.py
+)
+install(DIRECTORY python/${PROJECT_NAME}
+  DESTINATION lib
+)
+foreach(PY_FILE ${PYTHON_NODES})
+  execute_process(COMMAND chmod +x ${CMAKE_INSTALL_PREFIX}/lib/${PROJECT_NAME}/${PY_FILE})
+endforeach()
+
+install(DIRECTORY sounds
+  DESTINATION share/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

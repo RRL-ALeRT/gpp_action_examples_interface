@@ -1,0 +1,8 @@
+# Goal
+string audio_file
+---
+# Result
+bool success
+---
+# Feedback
+float32 progress
