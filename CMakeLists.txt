@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(gpp_action_examples)
+project(gpp_action_examples_interface)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -7,9 +7,9 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 find_package(rosidl_default_generators REQUIRED)
 
@@ -18,23 +18,11 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "action/Print.action"
   "action/TrajectoryToFrame.action"
   "srv/Print.srv"
+  "srv/SpotBodyPose.srv"
+  DEPENDENCIES geometry_msgs
 )
 
-set(PYTHON_NODES
-  audio_action_server.py
-  print_srv_server.py
-  TrajectoryToFrameServer.py
-)
-install(DIRECTORY python/${PROJECT_NAME}
-  DESTINATION lib
-)
-foreach(PY_FILE ${PYTHON_NODES})
-  execute_process(COMMAND chmod +x ${CMAKE_INSTALL_PREFIX}/lib/${PROJECT_NAME}/${PY_FILE})
-endforeach()
-
-install(DIRECTORY sounds
-  DESTINATION share/${PROJECT_NAME}
-)
+ament_export_dependencies(rosidl_default_runtime)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
