@@ -2,6 +2,7 @@
 string robot_frame
 string odom_frame
 bool forward
+string planner # rrt_star can be selected a_star is default
 ---
 # Result
 bool success
