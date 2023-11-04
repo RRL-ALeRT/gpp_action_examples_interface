@@ -1,0 +1,8 @@
+# Goal
+builtin_interfaces/Duration duration
+---
+# Result
+bool success
+---
+# Feedback
+float32 progress
